@@ -1,3 +1,13 @@
+### cra-craco-electron-example
+
+#### run
+```
+electron electron-starter.js
+```
+
+- click on the React logo to invoke fs.readdir().
+- see the output (directorylisting) in the electron console (Window->Developer Tools).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
