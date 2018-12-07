@@ -1,7 +1,7 @@
 {
   "name": "cra-craco-electron-example",
   "version": "0.1.0",
-  "main": "src/electron-starter.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -19,7 +19,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,5 +31,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "electron": "^3.0.10",
+    "electron-builder": "^20.38.2"
+  }
 }
