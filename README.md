@@ -1,10 +1,22 @@
 ### cra-craco-electron-example
 
-#### run
+#### build with electron-builder
+```
+yarn build
+yarn dist
+```
+
+Then launch the dmg in the dist folder
+
+- click on the React logo to invoke fs.readdir().  
+- see the output (directorylisting) in the electron console.
+
+#### run without electron-builder
 ```
 electron electron-starter.js
 ```
 
+- assumes electron is installed globally (npm i -g electron)
 - click on the React logo to invoke fs.readdir().
 - see the output (directorylisting) in the electron console (Window->Developer Tools).
 
