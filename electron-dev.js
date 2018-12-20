@@ -1,22 +1,51 @@
 const electron = require('electron');
+const fs = require('fs');
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-const path = require('path');
-const url = require('url');
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+const path = require('path');
+const url = require('url');
+
+console.log(__dirname);
+console.log(process.env.NODE_ENV);
+
+function debounce(func, ms) {
+    let ts;
+    return function() {
+        clearTimeout(ts);
+        ts = setTimeout(() => func.apply(this, arguments), ms);
+    };
+}
+
+if (process.env.NODE_ENV !== 'production') {
+    const watchPath = path.join(__dirname, "./build/static");
+
+    fs.watch(
+        watchPath,
+        { encoding: 'buffer' },
+        debounce((eventType, filename) => {
+            watchPathExists = fs.existsSync(watchPath);
+            console.log(`Reloading electron: ${watchPathExists}`);
+            if (watchPathExists) {
+                mainWindow.destroy();
+                createWindow();
+            }
+        }, 50)
+
+    );
+}
+
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({width: 1024, height: 768});
 
     // and load the index.html of the app.
-    console.log(__dirname);
     // mainWindow.loadURL('http://localhost:3000');
     mainWindow.loadFile(path.join(__dirname, "./build/index.html"));
 
@@ -30,6 +59,12 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
+
+    mainWindow.webContents.on('crashed', () => {
+        console.log(`mainWindow crashed. re-creating.`)
+        mainWindow.destroy();
+        createWindow();
+    });
 }
 
 // This method will be called when Electron has finished

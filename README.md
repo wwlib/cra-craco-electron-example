@@ -1,28 +1,55 @@
 ### cra-craco-electron-example
 
-#### build with electron-builder
-```
-yarn build
-yarn dist
-```
+*cra-craco-electron-example* demonstrates how to set up a react project (using TypeScript) and build it for both the Web and as a standalone electron app.
 
-Then launch the dmg in the dist folder
-
-- click on the React logo to invoke fs.readdir().  
-- see the output (directorylisting) in the electron console.
-
-#### run without electron-builder
-```
-electron electron-starter.js
-```
-
-- assumes electron is installed globally (npm i -g electron)
-- click on the React logo to invoke fs.readdir().
-- see the output (directorylisting) in the electron console (Window->Developer Tools).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Note: The `@craco/craco` module is used to override the create-react-app default webpack config (`target: 'electron-renderer'`), instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.electron.js` [npm craco](https://www.npmjs.com/package/@craco/craco)
+
+```
+create-react-app --typescript cra-craco-electron-example
+```
+
+#### prerequisites
+- install node (i.e. v8.12.0)
+- install yarn
+
+#### install
+```
+yarn
+```
+
+#### web
+To build for the Web and automatically launch a browser window for development...
+
+```
+yarn start:web
+```
+
+#### electron
+To build for the electron, launch an electron window and reload electron automatically while developing...
+```
+yarn watch:electron
+```
+and in another console tab...
+```
+yarn start:electron-dev
+```
+
+
+#### electron-builder
+To build a native application (i.e. for MacOS)...
+```
+yarn build:electron
+yarn dist
+```
+
+Then launch the dmg found in the `dist` folder or open the app in `dist/mac`
+
+
+
+## Other available Scripts (Create React App)
 
 In the project directory, you can run:
 
