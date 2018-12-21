@@ -2,19 +2,62 @@
 
 ![](./docs/cra-craco-header.png)
 
-*cra-craco-electron-example* demonstrates how to set up a react project (using TypeScript) and build it for both the Web and as a standalone electron app.
+*cra-craco-electron-example* demonstrates how to set up a react project (using TypeScript) and build it for *both* the Web and as a standalone electron app.
 
 **Medium post:**
 <https://medium.com/@andrew.rapo/using-create-react-app-craco-to-build-apps-for-both-the-web-and-electron-8f4ab827877f>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), like...
 
 `create-react-app --typescript cra-craco-electron-example`
 
-Note: The `@craco/craco` module is used to override the create-react-app default webpack config (`target: 'electron-renderer'`), instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.electron.js` [npm craco](https://www.npmjs.com/package/@craco/craco)
+In this project the [\@craco/craco](https://www.npmjs.com/package/@craco/craco) module is used to override the create-react-app default webpack config instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.electron.js`
 
 ```
-create-react-app --typescript cra-craco-electron-example
+module.exports = {
+    webpack: {
+        configure: {
+            target: 'electron-renderer'
+        }
+    }
+};
+```
+
+#### environment variables
+
+Environment variables are used at runtime to enable/disable features depending on what the browser or Electron supports.
+
+.env.web
+```
+REACT_APP_NAME=myApp
+REACT_APP_MODE=web
+```
+
+.env.electron
+```
+REACT_APP_NAME=myApp
+REACT_APP_MODE=electron
+```
+
+at runtime...
+```js
+let fs: any;
+if (process.env.REACT_APP_MODE == 'electron') {
+    console.log(`REQUIRING fs-extra`);
+    fs = require('fs-extra');
+}
+
+export default class TestFs {
+
+    static getDirectoryListing(): string {
+        if (process.env.REACT_APP_MODE == 'electron') {
+            let files = fs.readdirSync('.');
+            return JSON.stringify(files, null, 2);
+        } else {
+            return 'Directory listing is not available in the browser.'
+        }
+    }
+}
 ```
 
 #### prerequisites
