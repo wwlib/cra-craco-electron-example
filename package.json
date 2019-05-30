@@ -52,11 +52,6 @@
     "npm-watch": "^0.6.0",
     "typescript": "3.5.1"
   },
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:wwlib/cra-craco-electron-example.git"
