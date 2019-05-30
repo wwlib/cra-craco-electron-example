@@ -9,7 +9,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), like...
 
-`create-react-app --typescript cra-craco-electron-example`
+`create-react-app cra-craco-electron-example --typescript`
 
 In this project the [\@craco/craco](https://www.npmjs.com/package/@craco/craco) module is used to override the create-react-app default webpack config instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.electron.js`
 
@@ -86,6 +86,25 @@ and in another console tab...
 yarn start:electron-dev
 ```
 
+**electron 5 compatibility**
+- https://stackoverflow.com/questions/55093700/electron-5-0-0-uncaught-referenceerror-require-is-not-defined
+- https://electronjs.org/docs/faq#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
+```
+mainWindow = new BrowserWindow({width: 1024, height: 768});
+
+change to:
+mainWindow = new BrowserWindow({width: 1024, height: 768, webPreferences: { nodeIntegration: true }});
+
+```
+
+**electron 6 compatibility**
+- https://github.com/electron/electron/blob/master/docs/api/breaking-changes.md
+```
+// Deprecated
+require('fs')
+// Replace with
+require('electron').remote.require('fs')
+```
 
 #### electron-builder
 To build a native application (i.e. for MacOS)...
