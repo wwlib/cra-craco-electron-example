@@ -30,22 +30,32 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.3",
+    "@types/react": "16.8.19",
+    "@types/react-dom": "16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "typescript": "3.5.1"
+  },
   "devDependencies": {
     "@craco/craco": "^5.2.1",
-    "@types/jest": "24.0.11",
-    "@types/node": "11.11.0",
-    "@types/react": "16.8.7",
-    "@types/react-dom": "16.8.2",
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.3",
+    "@types/react": "16.8.19",
+    "@types/react-dom": "16.8.4",
     "electron": "^5.0.2",
     "electron-builder": "^20.41.0",
     "env-cmd": "^9.0.2",
     "npm-watch": "^0.6.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.5.1"
   },
   "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
   },
   "repository": {
     "type": "git",
