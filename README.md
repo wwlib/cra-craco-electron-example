@@ -70,10 +70,16 @@ yarn
 ```
 
 #### web
-To build for the Web and automatically launch a browser window for development...
+To develop for the Web and automatically launch a browser window for development...
 
 ```
 yarn start:web
+```
+
+To build for the Web...
+
+```
+yarn build:web
 ```
 
 #### electron

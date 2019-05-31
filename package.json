@@ -38,19 +38,12 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "typescript": "3.5.1"
-  },
-  "devDependencies": {
+    "typescript": "3.5.1",
     "@craco/craco": "^5.2.1",
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.3",
-    "@types/react": "16.8.19",
-    "@types/react-dom": "16.8.4",
     "electron": "^5.0.2",
     "electron-builder": "^20.41.0",
     "env-cmd": "^9.0.2",
-    "npm-watch": "^0.6.0",
-    "typescript": "3.5.1"
+    "npm-watch": "^0.6.0"
   },
   "repository": {
     "type": "git",
