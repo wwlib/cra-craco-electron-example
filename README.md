@@ -11,13 +11,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `create-react-app cra-craco-electron-example --typescript`
 
-In this project the [\@craco/craco](https://www.npmjs.com/package/@craco/craco) module is used to override the create-react-app default webpack config instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.electron.js`
+In this project the [\@craco/craco](https://www.npmjs.com/package/@craco/craco) module is used to override the create-react-app default webpack config instructing it to build for the `electron-renderer`. This allows the app to run in electron AND have access to the filesystem, etc. See: `craco.config.js`
 
-```
+```js
+let target = 'web';
+if (process.env.REACT_APP_MODE === 'electron') {
+  target = 'electron-renderer'
+}
+console.log(`craco.config.js: setting webpack target to: ${target}`);
+
 module.exports = {
     webpack: {
         configure: {
-            target: 'electron-renderer'
+            target: target
         }
     }
 };
