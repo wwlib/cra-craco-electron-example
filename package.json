@@ -36,7 +36,7 @@
     "@types/node": "12.12.3",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
-    "electron": "^7.0.0",
+    "electron": "^11.5.0",
     "electron-builder": "^22.1.0",
     "env-cmd": "^10.0.1",
     "npm-watch": "^0.6.0",
